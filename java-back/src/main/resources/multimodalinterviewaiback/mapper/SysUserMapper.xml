@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="multimodalinterviewaiback.mapper.SysUserMapper">
+
+    <select id="findById" resultType="multimodalinterviewaiback.pojo.vo.AITraining.SysUser">
+        SELECT * FROM sys_user WHERE id = #{id}
+    </select>
+
+    <select id="findByUserId" resultType="multimodalinterviewaiback.pojo.vo.AITraining.SysUser">
+        SELECT * FROM sys_user WHERE user_id = #{userId}
+    </select>
+
+    <select id="findTop5ByOrderByTotalSolvedDesc" resultType="multimodalinterviewaiback.pojo.vo.AITraining.SysUser">
+        SELECT * FROM sys_user ORDER BY total_solved_questions DESC LIMIT 5
+    </select>
+
+    <insert id="insert" parameterType="multimodalinterviewaiback.pojo.vo.AITraining.SysUser" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_user (user_id, username, level, exp, consecutive_days, total_solved_questions, create_time, update_time)
+        VALUES (#{userId}, #{username}, #{level}, #{exp}, #{consecutiveDays}, #{totalSolvedQuestions}, #{createTime}, #{updateTime})
+    </insert>
+
+    <update id="update" parameterType="multimodalinterviewaiback.pojo.vo.AITraining.SysUser">
+        UPDATE sys_user
+        SET
+            level = #{level},
+            exp = #{exp},
+            consecutive_days = #{consecutiveDays},
+            total_solved_questions = #{totalSolvedQuestions},
+            update_time = #{updateTime}
+        WHERE id = #{id}
+    </update>
+
+</mapper>

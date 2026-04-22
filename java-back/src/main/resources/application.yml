@@ -1,0 +1,76 @@
+server:
+  address: 0.0.0.0
+  port: 18080
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  #数据库连接信息
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/multi_modal_interview_ai
+    username: root
+    password: root
+
+    #文件上传配置
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+      enabled: true
+  task:
+    scheduling:
+      enabled: true
+#  application:
+#    name: StudentGradeSystem
+#  ai:
+#    openai:
+#      api-key: sk-52366ef9660b429788d40842464b981b
+#      base-url: https://api.deepseek.com
+#      chat:
+#        options:
+#          model: deepseek-chat
+
+
+#Mybatis配置
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#阿里云OSS
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    accessKeyId: LTAI5t8aWF5pQAE2mRJ8D4xK
+    accessKeySecret: eAfTTJhSASnVtINdq1ELP4kRmkIRhg
+    bucketName: 1948-interview
+pagehelper:
+  helper-dialect: mysql
+
+llm:
+  xfyun:
+    api-password: uAxQSNsxLLqBGcMEPUtU:yQpUAhWKYmMdHHTlUGEL
+    url: https://spark-api-open.xf-yun.com/v1/chat/completions
+#    appid: f6cf68da
+#    api-key: 750882c17d5ebe774ae2af7e14c9ca22
+#    api-secret: YjQ1OTRjMDczNGU2Zjk5NjQ0MDQ4MDQ5
+#    ws-url: wss://spark-api.xf-yun.com/v1.1/chat
+
+
+
+
+
+tools:
+  safeFactor: 6         # 工作因子（work factor），可以根据需要调整，数值越大，计算越慢，但安全性越高
+  jwtKey: multimodalinterviewaiback   # 令牌密钥key
+  jwtExpire: 2678400   # 持续时间(秒）一个月
+
+
+#deepseek:
+#  api:
+#    key: sk-52366ef9660b429788d40842464b981b
+#    url: https://api.deepseek.com/chat/completions
+#  model: deepseek-chat

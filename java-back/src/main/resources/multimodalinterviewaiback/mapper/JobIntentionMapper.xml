@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="multimodalinterviewaiback.mapper.JobIntentionMapper">
+
+    <insert id="insert" parameterType="multimodalinterviewaiback.pojo.entity.JobIntention">
+        INSERT INTO job_intention
+            (personal_id, position, expected_salary, desired_city, available_time)
+        VALUES
+            (#{personalId}, #{position}, #{expectedSalary}, #{desiredCity}, #{availableTime})
+    </insert>
+
+    <delete id="deleteByPersonalId" parameterType="java.lang.Long">
+        DELETE FROM job_intention WHERE personal_id = #{personalId}
+    </delete>
+
+    <select id="selectByPersonalId" parameterType="java.lang.Long" resultType="multimodalinterviewaiback.pojo.entity.JobIntention">
+        SELECT * FROM job_intention WHERE personal_id = #{personalId}
+    </select>
+</mapper>

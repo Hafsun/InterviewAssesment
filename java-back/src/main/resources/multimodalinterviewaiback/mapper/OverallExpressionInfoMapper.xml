@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="multimodalinterviewaiback.mapper.OverallExpressionInfoMapper">
+    <!-- 新增综合指标总结 -->
+    <insert id="insert" parameterType="multimodalinterviewaiback.pojo.entity.OverallExpressionInfoEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO overallExpressionInfo (
+            report_id,
+            concentration,
+            nervousness,
+            happiness,
+            doubtfulness,
+            adaptability,
+            emotionalStability,
+            confidence
+        ) VALUES (
+                     #{report_id},
+                     #{concentration},
+                     #{nervousness},
+                     #{happiness},
+                     #{doubtfulness},
+                     #{adaptability},
+                     #{emotionalStability},
+                     #{confidence}
+                 )
+    </insert>
+
+    <!-- 根据报告ID查询综合指标 -->
+    <select id="selectByReportId" parameterType="java.lang.Integer" resultType="multimodalinterviewaiback.pojo.entity.OverallExpressionInfoEntity">
+        SELECT
+            id,
+            report_id,
+            concentration,
+            nervousness,
+            happiness,
+            doubtfulness,
+            adaptability,
+            emotionalStability,
+            confidence
+        FROM overallExpressionInfo
+        WHERE report_id = #{reportId}
+    </select>
+
+    <delete id="deleteByReportId" parameterType="java.lang.Integer">
+        DELETE FROM overallExpressionInfo WHERE report_id = #{reportId}
+    </delete>
+</mapper>

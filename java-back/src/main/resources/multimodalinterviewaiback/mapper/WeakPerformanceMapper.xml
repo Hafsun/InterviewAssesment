@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="multimodalinterviewaiback.mapper.WeakPerformanceMapper">
+    <!-- 新增弱项表现 -->
+    <insert id="insert" parameterType="multimodalinterviewaiback.pojo.entity.WeakPerformanceEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO weak_performance (
+            report_id,
+            problem_summary,
+            round_number,
+            weakness_analysis
+        ) VALUES (
+                     #{reportId},
+                     #{problemSummary},
+                     #{roundNumber},
+                     #{weaknessAnalysis}
+                 )
+    </insert>
+
+    <!-- 根据报告ID查询弱项表现列表 -->
+    <select id="selectByReportId" parameterType="java.lang.Integer" resultType="multimodalinterviewaiback.pojo.entity.WeakPerformanceEntity">
+        SELECT
+            id,
+            report_id AS reportId,
+            problem_summary AS problemSummary,
+            round_number AS roundNumber,
+            weakness_analysis AS weaknessAnalysis
+        FROM weak_performance
+        WHERE report_id = #{reportId}
+    </select>
+    <select id="getWeakPerformanceDTOList" resultType="multimodalinterviewaiback.pojo.dto.WeakPerformanceDTO">
+        select problem_summary,round_number,weakness_analysis
+        from weak_performance
+        where report_id = #{reportId}
+    </select>
+
+    <delete id="deleteByReportId" parameterType="java.lang.Integer">
+        DELETE FROM weak_performance WHERE report_id = #{reportId}
+    </delete>
+</mapper>

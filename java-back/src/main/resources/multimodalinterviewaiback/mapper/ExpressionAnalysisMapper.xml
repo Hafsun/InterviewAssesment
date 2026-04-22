@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="multimodalinterviewaiback.mapper.ExpressionAnalysisMapper">
+
+
+    <insert id="insert" parameterType="multimodalinterviewaiback.pojo.entity.ExpressionAnalysisEntity">
+        insert into expression_analysis (report_id, round_number, dominant_emotion,
+                                         intensity_duration, rationality_analysis)
+        values (#{report_id}, #{round_number}, #{dominantEmotion}, #{intensityDuration}, #{rationalityAnalysis})
+    </insert>
+    <select id="selectId" resultType="java.lang.Integer">
+        select id
+        from expression_analysis
+        where report_id = #{report_id} and round_number = #{round_number}
+    </select>
+
+    <select id="getExpressionAnalysisDTO" resultType="multimodalinterviewaiback.pojo.dto.ExpressionAnalysisDTO">
+        select dominant_emotion, intensity_duration, rationality_analysis
+        from expression_analysis
+        where report_id = #{reportId} and round_number = #{roundNumber}
+    </select>
+
+    <delete id="deleteByReportId" parameterType="java.lang.Integer">
+        DELETE FROM expression_analysis WHERE report_id = #{reportId}
+    </delete>
+</mapper>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="multimodalinterviewaiback.mapper.UserMapper">
+
+    <select id="findUserCountByUsername" resultType="java.lang.Integer">
+        select count(*) from user
+        <where>
+            <if test="username!=null">
+                username = #{username}
+            </if>
+        </where>
+    </select>
+
+    <select id="getUserPassword" resultType="java.lang.String">
+        select password from user
+        where username = #{username}
+    </select>
+
+    <insert id="addUser" parameterType="multimodalinterviewaiback.pojo.entity.User">
+        INSERT INTO user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">
+                username,
+            </if>
+            <if test="password != null and password != ''">
+                password,
+            </if>
+            <if test="passProtect != null and passProtect != ''">
+                passProtect,
+            </if>
+            <if test="passProtectAnswer != null and passProtectAnswer != ''">
+                passProtectAnswer,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null and username != ''">
+                #{username},
+            </if>
+            <if test="password != null and password != ''">
+                #{password},
+            </if>
+            <if test="passProtect != null and passProtect != ''">
+                #{passProtect},
+            </if>
+            <if test="passProtectAnswer != null and passProtectAnswer != ''">
+                #{passProtectAnswer},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getUserIdByUsername" resultType="java.lang.Integer">
+        select id from user
+        <where>
+            <if test="username!=null">
+                username = #{username}
+            </if>
+        </where>
+    </select>
+
+    <select id="getPictureUrlByUsername" resultType="java.lang.String">
+        select pictureUrl from user
+        <where>
+            username = #{username}
+        </where>
+    </select>
+
+    <update id="updatePictureUrl">
+        update user
+        set pictureUrl = #{pictureUrl}
+        where username = #{username}
+    </update>
+
+    <select id="getUserInfo" resultType="multimodalinterviewaiback.pojo.dto.GetUserInfoDTO">
+        select username, name, sex, email, phone, major, interviewCount, comprehensiveScore, pictureUrl
+        from user
+        where username = #{username}
+    </select>
+
+
+    <select id="findUserPassword" resultType="java.lang.String">
+        select password from user
+        where username = #{username}
+    </select>
+
+
+    <update id="updatePassword">
+        UPDATE user
+        SET password = #{newPassword}
+        WHERE username = #{username}
+    </update>
+
+    <update id="updateUserProtectQuestion">
+        update user
+        set passProtect = #{info.passProtect},
+            passProtectAnswer = #{info.passProtectAnswer}
+        where username = #{username}
+    </update>
+
+
+    <!-- 根据ID查询用户 -->
+    <select id="selectById" parameterType="java.lang.Integer" resultType="multimodalinterviewaiback.pojo.entity.UserEntity">
+        SELECT
+            id,
+            interviewCount,
+            comprehensiveScore
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+    <!-- 更新面试次数和平均分数 -->
+    <update id="updateInterviewStats" parameterType="multimodalinterviewaiback.pojo.entity.UserEntity">
+        UPDATE user
+        SET
+            interviewCount = #{interviewCount},
+            comprehensiveScore = #{comprehensiveScore}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 更新用户信息（动态SQL，只更新非空字段） -->
+    <update id="updateUserInfo" parameterType="multimodalinterviewaiback.pojo.entity.UserEntity">
+        UPDATE user
+        <set>
+            <if test="username != null">username = #{username},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="major != null">major = #{major},</if>
+            <if test="interviewCount != null">interviewCount = #{interviewCount},</if>
+            <if test="comprehensiveScore != null">comprehensiveScore = #{comprehensiveScore},</if>
+            <if test="pictureUrl != null">pictureUrl = #{pictureUrl},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 根据用户名查询用户 -->
+    <select id="selectByUsername" parameterType="java.lang.String" resultType="multimodalinterviewaiback.pojo.entity.UserEntity">
+        SELECT *
+        FROM user
+        WHERE username = #{username}
+    </select>
+
+</mapper>

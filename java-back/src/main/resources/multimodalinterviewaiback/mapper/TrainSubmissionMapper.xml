@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="multimodalinterviewaiback.mapper.TrainSubmissionMapper">
+
+    <insert id="insert" parameterType="multimodalinterviewaiback.pojo.vo.AITraining.TrainSubmission" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO train_submission (user_id, question_id, user_answer, ai_score, ai_logic_score, ai_depth_score, ai_completeness_score, ai_comment, submit_time)
+        VALUES (#{userId}, #{questionId}, #{userAnswer}, #{aiScore}, #{aiLogicScore}, #{aiDepthScore}, #{aiCompletenessScore}, #{aiComment}, #{submitTime})
+    </insert>
+
+</mapper>

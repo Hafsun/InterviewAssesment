@@ -1,0 +1,257 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 134217728 bytes. Error detail: G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   This process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3898), pid=464120, tid=467276
+#
+# JRE version:  (21.0.6+8) (build )
+# Java VM: OpenJDK 64-Bit Server VM (21.0.6+8-b631.39, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Djava.rmi.server.hostname=127.0.0.1 -Duser.timezone=UTC -Xmx2048m -Xms128m -Djdbc.classpath=C:\Users\joker\AppData\Local\Temp\RemoteDriver2.classpath.txt --add-exports=java.desktop/sun.awt=ALL-UNNAMED --add-exports=java.desktop/java.awt.peer=ALL-UNNAMED --add-opens=java.desktop/java.awt=ALL-UNNAMED --add-opens=jdk.unsupported/sun.misc=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 com.intellij.database.remote.RemoteJdbcServer com.mysql.cj.jdbc.Driver
+
+Host: Intel(R) Core(TM) i7-14650HX, 24 cores, 15G,  Windows 11 , 64 bit Build 22621 (10.0.22621.4974)
+Time: Wed Mar 18 17:32:14 2026  Windows 11 , 64 bit Build 22621 (10.0.22621.4974) elapsed time: 0.009752 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000023250e23260):  JavaThread "Unknown thread" [_thread_in_vm, id=467276, stack(0x0000004e1b400000,0x0000004e1b500000) (1024K)]
+
+Stack: [0x0000004e1b400000,0x0000004e1b500000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6e5d39]
+V  [jvm.dll+0x8c4133]
+V  [jvm.dll+0x8c668e]
+V  [jvm.dll+0x8c6d73]
+V  [jvm.dll+0x288f76]
+V  [jvm.dll+0x6e25f5]
+V  [jvm.dll+0x6d60aa]
+V  [jvm.dll+0x3635bb]
+V  [jvm.dll+0x36b186]
+V  [jvm.dll+0x3bd4b6]
+V  [jvm.dll+0x3bd788]
+V  [jvm.dll+0x335d2c]
+V  [jvm.dll+0x336a1b]
+V  [jvm.dll+0x88b589]
+V  [jvm.dll+0x3ca688]
+V  [jvm.dll+0x874698]
+V  [jvm.dll+0x45f04e]
+V  [jvm.dll+0x460d31]
+C  [jli.dll+0x52ab]
+C  [ucrtbase.dll+0x29333]
+C  [KERNEL32.DLL+0x1259d]
+C  [ntdll.dll+0x5af38]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ff94a15a148, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x00000232532e75f0 WorkerThread "GC Thread#0"                     [id=459012, stack(0x0000004e1b500000,0x0000004e1b600000) (1024K)]
+  0x00000232532f8670 ConcurrentGCThread "G1 Main Marker"            [id=470888, stack(0x0000004e1b600000,0x0000004e1b700000) (1024K)]
+  0x00000232532f9170 WorkerThread "G1 Conc#0"                       [id=449656, stack(0x0000004e1b700000,0x0000004e1b800000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ff949848de7]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007ff94a1ceb30] Heap_lock - owner thread: 0x0000023250e23260
+
+Heap address: 0x0000000080000000, size: 2048 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 5 size 8 Array Of Cards #cards 12 size 40 Howl #buckets 4 coarsen threshold 1843 Howl Bitmap #cards 512 size 80 coarsen threshold 460 Card regions per heap region 1 cards per card region 2048
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x0000000080000000, 0x0000000100000000)
+  region size 1024K, 0 young (0K), 0 survivors (0K)
+ Metaspace       used 0K, committed 0K, reserved 0K
+  class space    used 0K, committed 0K, reserved 0K
+
+Heap Regions: E=young(eden), S=young(survivor), O=old, HS=humongous(starts), HC=humongous(continues), CS=collection set, F=free, TAMS=top-at-mark-start, PB=parsable bottom
+
+Card table byte_map: [0x0000023267400000,0x0000023267800000] _byte_map_base: 0x0000023267000000
+
+Marking Bits: (CMBitMap*) 0x00000232532e7cf0
+ Bits: [0x0000023267800000, 0x0000023269800000)
+
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.006 Loaded shared library D:\Java\IntelliJ IDEA 2024.3.5\jbr\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Memory protections (0 events):
+No events
+
+Nmethod flushes (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff6fd990000 - 0x00007ff6fd99a000 	D:\Java\IntelliJ IDEA 2024.3.5\jbr\bin\java.exe
+0x00007ff9d7390000 - 0x00007ff9d75a7000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ff9d6ab0000 - 0x00007ff9d6b74000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ff9d48d0000 - 0x00007ff9d4ca1000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ff9d47b0000 - 0x00007ff9d48c1000 	C:\Windows\System32\ucrtbase.dll
+0x00007ff9bc590000 - 0x00007ff9bc5a8000 	D:\Java\IntelliJ IDEA 2024.3.5\jbr\bin\jli.dll
+0x00007ff9bca30000 - 0x00007ff9bca4b000 	D:\Java\IntelliJ IDEA 2024.3.5\jbr\bin\VCRUNTIME140.dll
+0x00007ff9d7190000 - 0x00007ff9d7341000 	C:\Windows\System32\USER32.dll
+0x00007ff9d4e50000 - 0x00007ff9d4e76000 	C:\Windows\System32\win32u.dll
+0x00007ff9d5420000 - 0x00007ff9d5449000 	C:\Windows\System32\GDI32.dll
+0x00007ff9d4690000 - 0x00007ff9d47ab000 	C:\Windows\System32\gdi32full.dll
+0x00007ff9d4e80000 - 0x00007ff9d4f1a000 	C:\Windows\System32\msvcp_win.dll
+0x00007ff9bbd20000 - 0x00007ff9bbfb2000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.4830_none_270fe7d773858e80\COMCTL32.dll
+0x00007ff9d6b80000 - 0x00007ff9d6c27000 	C:\Windows\System32\msvcrt.dll
+0x00007ff9d5660000 - 0x00007ff9d5691000 	C:\Windows\System32\IMM32.DLL
+0x00007ff9cff90000 - 0x00007ff9cff9c000 	D:\Java\IntelliJ IDEA 2024.3.5\jbr\bin\vcruntime140_1.dll
+0x00007ff977890000 - 0x00007ff97791d000 	D:\Java\IntelliJ IDEA 2024.3.5\jbr\bin\msvcp140.dll
+0x00007ff949500000 - 0x00007ff94a2c1000 	D:\Java\IntelliJ IDEA 2024.3.5\jbr\bin\server\jvm.dll
+0x00007ff9d69f0000 - 0x00007ff9d6aa1000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ff9d5b20000 - 0x00007ff9d5bc7000 	C:\Windows\System32\sechost.dll
+0x00007ff9d4e20000 - 0x00007ff9d4e48000 	C:\Windows\System32\bcrypt.dll
+0x00007ff9d5520000 - 0x00007ff9d5634000 	C:\Windows\System32\RPCRT4.dll
+0x00007ff9d6f50000 - 0x00007ff9d6fc1000 	C:\Windows\System32\WS2_32.dll
+0x00007ff9d3380000 - 0x00007ff9d33cd000 	C:\Windows\SYSTEM32\POWRPROF.dll
+0x00007ff9cdf90000 - 0x00007ff9cdfc4000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ff9caec0000 - 0x00007ff9caeca000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ff9d3360000 - 0x00007ff9d3373000 	C:\Windows\SYSTEM32\UMPDC.dll
+0x00007ff9d3610000 - 0x00007ff9d3628000 	C:\Windows\SYSTEM32\kernel.appcore.dll
+0x00007ff9cff60000 - 0x00007ff9cff6a000 	D:\Java\IntelliJ IDEA 2024.3.5\jbr\bin\jimage.dll
+0x00007ff9d1a00000 - 0x00007ff9d1c32000 	C:\Windows\SYSTEM32\DBGHELP.DLL
+0x00007ff9d6660000 - 0x00007ff9d69f0000 	C:\Windows\System32\combase.dll
+0x00007ff9d5220000 - 0x00007ff9d52f7000 	C:\Windows\System32\OLEAUT32.dll
+0x00007ff9c58f0000 - 0x00007ff9c5922000 	C:\Windows\SYSTEM32\dbgcore.DLL
+0x00007ff9d4610000 - 0x00007ff9d468b000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007ff9bc9f0000 - 0x00007ff9bca10000 	D:\Java\IntelliJ IDEA 2024.3.5\jbr\bin\java.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;D:\Java\IntelliJ IDEA 2024.3.5\jbr\bin;C:\Windows\SYSTEM32;C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.4830_none_270fe7d773858e80;D:\Java\IntelliJ IDEA 2024.3.5\jbr\bin\server
+
+VM Arguments:
+jvm_args: -Djava.rmi.server.hostname=127.0.0.1 -Duser.timezone=UTC -Xmx2048m -Xms128m -Djdbc.classpath=C:\Users\joker\AppData\Local\Temp\RemoteDriver2.classpath.txt --add-exports=java.desktop/sun.awt=ALL-UNNAMED --add-exports=java.desktop/java.awt.peer=ALL-UNNAMED --add-opens=java.desktop/java.awt=ALL-UNNAMED --add-opens=jdk.unsupported/sun.misc=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 
+java_command: com.intellij.database.remote.RemoteJdbcServer com.mysql.cj.jdbc.Driver
+java_class_path (initial): D:\Java\IntelliJ IDEA 2024.3.5\lib\util_rt.jar;D:\Java\IntelliJ IDEA 2024.3.5\lib\util-8.jar;D:\Java\IntelliJ IDEA 2024.3.5\lib\groovy.jar;D:\Java\IntelliJ IDEA 2024.3.5\plugins\DatabaseTools\lib\jdbc-console.jar;D:\Java\IntelliJ IDEA 2024.3.5\plugins\grid-core-impl\lib\jdbc-console-types.jar;D:\Java\IntelliJ IDEA 2024.3.5\lib\util.jar;D:\Java\IntelliJ IDEA 2024.3.5\lib\bouncy-castle.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 12                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 5                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 18                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 134217728                                 {product} {command line}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 2147483648                                {product} {command line}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 134217728                                 {product} {command line}
+    uintx NonNMethodCodeHeapSize                   = 7602480                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122027880                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122027880                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 2147483648                             {manageable} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+PATH=C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;D:\apache-maven-3.9.9\bin;D:\MySQL\MySQL Server 8.0\bin;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;D:\NodeJs\;D:\Git\Git\cmd;D:\MySQL\MySQL Shell 8.0\bin\;C:\Users\joker\AppData\Local\Microsoft\WindowsApps;D:\c语言\VScode\Microsoft VS Code;D:\VSCode\MinGW\include;;D:\新建文件夹\CLion 2025.1.1\bin;;C:\Users\joker\AppData\Roaming\npm;D:\cpolar\
+USERNAME=joker
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 183 Stepping 1, GenuineIntel
+TMP=C:\Users\joker\AppData\Local\Temp
+TEMP=C:\Users\joker\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+JNI global refs:
+JNI global refs: 0, weak refs: 0
+
+JNI global refs memory usage: 0, weak refs: 0
+
+Process memory usage:
+Resident Set Size: 12232K (0% of 16547704K total physical memory with 7271232K free physical memory)
+
+OOME stack traces (most recent first):
+Classloader memory used:
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 22621 (10.0.22621.4974)
+OS uptime: 30 days 17:36 hours
+
+CPU: total 24 (initial active 24) (12 cores per cpu, 2 threads per core) family 6 model 183 stepping 1 microcode 0x123, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, clwb, serialize, rdtscp, rdpid, fsrm, f16c, pku, cet_ibt, cet_ss
+Processor Information for the first 24 processors :
+  Max Mhz: 2200, Current Mhz: 2200, Mhz Limit: 2200
+
+Memory: 4k page, system-wide physical 16159M (7101M free)
+TotalPageFile size 54559M (AvailPageFile size 100M)
+current process WorkingSet (physical memory assigned to process): 11M, peak: 11M
+current process commit charge ("private bytes"): 81M, peak: 209M
+
+vm_info: OpenJDK 64-Bit Server VM (21.0.6+8-b631.39) for windows-amd64 JRE (21.0.6+8-b631.39), built on 2025-02-04 by "builduser" with MS VC++ 16.10 / 16.11 (VS2019)
+
+END.

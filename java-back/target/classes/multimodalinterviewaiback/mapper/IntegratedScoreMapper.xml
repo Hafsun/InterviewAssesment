@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="multimodalinterviewaiback.mapper.IntegratedScoreMapper">
+    <insert id="insert" parameterType="multimodalinterviewaiback.pojo.entity.IntegratedScoreEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO integrated_score (report_id, round_number, expression, logic, major, stable, strain)
+        VALUES (#{report_id}, #{round_number}, #{expression}, #{logic}, #{major}, #{stable}, #{strain})
+    </insert>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultType="multimodalinterviewaiback.pojo.entity.IntegratedScoreEntity">
+        SELECT * FROM integrated_score WHERE id = #{id}
+    </select>
+    <select id="getIntegratedScoreDTO" resultType="multimodalinterviewaiback.pojo.dto.IntegratedScoreDTO">
+        select expression, logic, major, stable, strain
+        from integrated_score
+        where report_id = #{report_id} and round_number = #{round_number}
+    </select>
+    <delete id="deleteByReportId" parameterType="java.lang.Integer">
+        DELETE FROM integrated_score WHERE report_id = #{reportId}
+    </delete>
+</mapper>

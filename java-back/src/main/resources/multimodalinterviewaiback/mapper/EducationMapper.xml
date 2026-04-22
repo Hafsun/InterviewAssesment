@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="multimodalinterviewaiback.mapper.EducationMapper">
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        INSERT INTO education
+        (personal_id, school, period, degree, major, gpa, courses)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.personalId}, #{item.school}, #{item.period}, #{item.degree},
+            #{item.major}, #{item.gpa}, #{item.courses})
+        </foreach>
+    </insert>
+
+    <delete id="deleteByPersonalId" parameterType="java.lang.Long">
+        DELETE FROM education WHERE personal_id = #{personalId}
+    </delete>
+
+    <select id="selectByPersonalId" parameterType="java.lang.Long" resultType="multimodalinterviewaiback.pojo.entity.Education">
+        SELECT * FROM education WHERE personal_id = #{personalId}
+    </select>
+</mapper>

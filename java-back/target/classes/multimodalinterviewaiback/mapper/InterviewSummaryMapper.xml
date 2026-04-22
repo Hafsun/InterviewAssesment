@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="multimodalinterviewaiback.mapper.InterviewSummaryMapper">
+    <!-- 新增面试总结 -->
+    <insert id="insert" parameterType="multimodalinterviewaiback.pojo.entity.SummaryEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO interview_summary (
+            report_id,
+            average_accuracy_score,
+            expression_pattern,
+            performance_overview
+        ) VALUES (
+                     #{report_id},
+                     #{averageAccuracyScore},
+                     #{expressionPattern},
+                     #{performanceOverview}
+                 )
+    </insert>
+
+    <!-- 根据报告ID查询面试总结 -->
+    <select id="selectByReportId" parameterType="java.lang.Integer" resultType="multimodalinterviewaiback.pojo.entity.InterviewSummaryEntity">
+        SELECT
+            id,
+            report_id,
+            average_accuracy_score,
+            expression_pattern,
+            performance_overview
+        FROM interview_summary
+        WHERE report_id = #{reportId}
+    </select>
+
+    <delete id="deleteByReportId" parameterType="java.lang.Integer">
+        DELETE FROM interview_summary WHERE report_id = #{reportId}
+    </delete>
+</mapper>
